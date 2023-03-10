@@ -11,6 +11,8 @@
 #include <QVector>
 #include <iostream>
 #include <QPen>
+#include <QFileDialog>
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class FukuroPlotter; }
@@ -33,10 +35,14 @@ private:
     double xAxisVal;
     double xAxisVal1;
     int xlow, xup;
-    int xlow1, xup1;
+//    int xlow1, xup1;
 
 private slots:
     void handleTimeout();
     void handleTimeoutGraph();
+    void on_startButton_clicked();
+    void on_clearButton_clicked();
+    void on_saveButton_clicked();
+    void on_loadButton_clicked();
 };
 #endif // FUKUROPLOTTER_H
