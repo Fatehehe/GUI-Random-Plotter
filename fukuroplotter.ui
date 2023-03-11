@@ -7,11 +7,26 @@
     <x>0</x>
     <y>0</y>
     <width>803</width>
-    <height>580</height>
+    <height>546</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>803</width>
+    <height>546</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>803</width>
+    <height>546</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>FukuroPlotter</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: #404040</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QCustomPlot" name="customPlot" native="true">
@@ -28,6 +43,9 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius : 25px;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -46,17 +64,21 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: 'white'
+</string>
+    </property>
     <property name="text">
      <string>FUKURO ANALYZER</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
       <y>450</y>
       <width>781</width>
-      <height>41</height>
+      <height>44</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -67,6 +89,16 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>13</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Start</string>
@@ -81,6 +113,18 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color : #b0b0b0;
+border-radius : 10px;
+color : black;</string>
+       </property>
        <property name="text">
         <string>Save</string>
        </property>
@@ -93,6 +137,18 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color : #b0b0b0;
+border-radius : 10px;
+color : black;</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -107,8 +163,77 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>12</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color : #b0b0b0;
+border-radius : 10px;
+color : black;</string>
+       </property>
        <property name="text">
         <string>Load</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>10</y>
+      <width>184</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color : #00ff2a;</string>
+       </property>
+       <property name="text">
+        <string>TARGET</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Umpush</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color : #ff2f00;</string>
+       </property>
+       <property name="text">
+        <string>FEEDBACK</string>
        </property>
       </widget>
      </item>

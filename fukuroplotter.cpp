@@ -13,22 +13,35 @@ FukuroPlotter::FukuroPlotter(QWidget *parent)
     ui->setupUi(this);
     rand = new QRandomGenerator();
 
+    ui->customPlot->setBackground(QColor(60,60,60));
+
     ui->customPlot->addGraph();
+
+    QPen pen;
+    pen.setWidth(3);
+    pen.setColor(QColor(0, 255, 42));
+    ui->customPlot->graph(0)->setPen(pen);
     ui->customPlot->graph(0)->setScatterStyle(QCPScatterStyle::ssCircle);
     ui->customPlot->graph(0)->setLineStyle(QCPGraph::lsLine);
     ui->customPlot->graph(0)->setAntialiased(true);
 
     ui->customPlot->addGraph();
-    QPen pen;
-    pen.setWidth(1);
-    pen.setColor(QColor(254,0,0));
-    ui->customPlot->graph(1)->setPen(pen);
+    QPen pen1;
+    pen1.setWidth(3);
+    pen1.setColor(QColor(255, 47, 0));
+    ui->customPlot->graph(1)->setPen(pen1);
     ui->customPlot->graph(1)->setScatterStyle(QCPScatterStyle::ssCircle);
     ui->customPlot->graph(1)->setLineStyle(QCPGraph::lsLine);
     ui->customPlot->graph(1)->setAntialiased(true);
 
-    ui->customPlot->xAxis->setLabel("X");
-    ui->customPlot->yAxis->setLabel("Y");
+    ui->customPlot->xAxis->setLabel("Time");
+    ui->customPlot->xAxis->setBasePen(QPen(QColor(250,250,250)));
+    ui->customPlot->xAxis->setLabelColor(QColor(250,250,250));
+    ui->customPlot->xAxis->setTickLabelColor(QColor(250,250,250));
+    ui->customPlot->yAxis->setLabel("Velocity");
+    ui->customPlot->yAxis->setBasePen(QPen(QColor(250,250,250)));
+    ui->customPlot->yAxis->setLabelColor(QColor(250,250,250));
+    ui->customPlot->yAxis->setTickLabelColor(QColor(250,250,250));
 
     ui->customPlot->xAxis->setRange(xlow,xup);
     ui->customPlot->yAxis->setRange(-50,50);
@@ -37,9 +50,12 @@ FukuroPlotter::FukuroPlotter(QWidget *parent)
 
     ui->customPlot->graph(0)->setLineStyle(QCPGraph::lsLine);
     ui->customPlot->graph(0)->setScatterStyle(QCPScatterStyle::ssDot);
+//    ui->customPlot->legend->setVisible(true);
 
     ui->customPlot->graph(1)->setLineStyle(QCPGraph::lsLine);
     ui->customPlot->graph(1)->setScatterStyle(QCPScatterStyle::ssDot);
+
+    ui->startButton->setStyleSheet("background-color:#00e031; border-radius : 10px; color : white;");
 
     connect(&timer, &QTimer::timeout, this, &FukuroPlotter::handleTimeout);
     connect(&timer, &QTimer::timeout, this, &FukuroPlotter::handleTimeoutGraph);
@@ -94,10 +110,12 @@ void FukuroPlotter::on_startButton_clicked()
 {
     if(ui->startButton->text() == "Stop"){
         ui->startButton->setText("Start");
+        ui->startButton->setStyleSheet("background-color:#00e031; border-radius : 10px; color : white;");
         timer.stop();
         return;
     }
     ui->startButton->setText("Stop");
+    ui->startButton->setStyleSheet("background-color:#d90000; border-radius : 10px; color : white;");
     timer.start();
 }
 
@@ -167,7 +185,21 @@ void FukuroPlotter::on_saveButton_clicked()
 
 void FukuroPlotter::on_loadButton_clicked()
 {
-    connect(ui->loadButton, &QPushButton::clicked, this, &FukuroPlotter::on_clearButton_clicked);
+    xup = LOWER_RANGE;
+    xlow = UPPER_RANGE;
+    x.clear();
+    y.clear();
+    xAxisVal = 0.0;
+    x1.clear();
+    y1.clear();
+
+    ui->customPlot->xAxis->setRange(xlow, xup);
+
+    ui->customPlot->graph(0)->data()->clear();
+    ui->customPlot->graph(1)->data()->clear();
+    ui->customPlot->rescaleAxes();
+    ui->customPlot->replot();
+    ui->customPlot->update();
 
     QString filename = QFileDialog::getOpenFileName(this, "Choose File");
 
